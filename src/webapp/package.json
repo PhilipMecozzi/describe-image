@@ -1,0 +1,20 @@
+{
+  "name": "describe-image",
+  "license": "MIT",
+  "dependencies": {
+    "@azure/storage-blob": "^12.9.0"
+  },
+  "browserslist": [
+    "last 1 Edge version",
+    "last 1 Chrome version",
+    "last 1 Firefox version",
+    "last 1 safari version"
+  ],
+  "scripts": {
+    "start": "parcel ./index.html"
+  },
+  "devDependencies": {
+    "baguettebox.js": "^1.11.1",
+    "parcel": "^2.4.0"
+  }
+}

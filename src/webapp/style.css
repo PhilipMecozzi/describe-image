@@ -1,0 +1,59 @@
+h1 {
+    font-family: sans-serif;
+    margin: 10px auto;
+    padding: 20px;
+}
+#drop-area {
+    border: 2px dashed gray;
+    border-radius: 20px;
+    width: 480px;
+    font-family: sans-serif;
+    margin: 100px auto;
+    padding: 20px;
+}
+#drop-area.highlight {
+    border-color: blue;
+}
+p {
+    margin-top: 0;
+}
+.upload-form {
+    margin-bottom: 10px;
+}
+#upload-gallery {
+    margin-top: 10px;
+}
+#upload-gallery img {
+    width: 100px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+#download-gallery {
+    margin-top: 10px;
+}
+#download-gallery img {
+    width: 100px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+#download-gallery img:hover {
+    border-color: gray;
+}
+.button {
+    display: inline-block;
+    padding: 10px;
+    background: whitesmoke;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+.button:hover {
+    background: white;
+}
+#fileElem {
+    display: none;
+}

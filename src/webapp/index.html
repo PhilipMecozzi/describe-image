@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="EN">
+    <head>
+        <meta charset="utf-8">
+        <title>I Describe Images of Cars</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="baguetteBox.css">
+    </head>
+    <body>
+        <header>
+            <h1>I Describe Images of Cars</h1>
+        </header>
+        <main>
+            <aside id="drop-area">
+                <form class="upload-form">
+                    <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+                    <label class="button" for="fileElem">Select files to upload</label>
+                    <input type="file" id="fileElem" multiple accept="image/*">
+                </form>
+                <section id="upload-gallery"></section>
+                <progress id="upload-progress-bar" max=100 value=0></progress>
+                <div id="upload-error"></div>
+            </aside>
+            <article>
+                <div id="download-error"></div>
+                <section id="download-gallery"></section>
+            </article>
+        </main>
+        <script src="./index.js"></script>
+    </body>
+</html>
