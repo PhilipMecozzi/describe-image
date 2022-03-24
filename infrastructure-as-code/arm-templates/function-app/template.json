@@ -1,0 +1,328 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing",
+            "location": "East US",
+            "kind": "functionapp",
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "mecozzidemoimageprocessing.azurewebsites.net",
+                        "sslState": "Disabled",
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "mecozzidemoimageprocessing.scm.azurewebsites.net",
+                        "sslState": "Disabled",
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "/subscriptions/e846f2bc-8576-4842-b35d-561593297d03/resourceGroups/Demo/providers/Microsoft.Web/serverfarms/ASP-Demo-888b",
+                "reserved": false,
+                "isXenon": false,
+                "hyperV": false,
+                "siteConfig": {
+                    "numberOfWorkers": 1,
+                    "acrUseManagedIdentityCreds": false,
+                    "alwaysOn": false,
+                    "http20Enabled": false,
+                    "functionAppScaleLimit": 200,
+                    "minimumElasticInstanceCount": 0
+                },
+                "scmSiteAlsoStopped": false,
+                "clientAffinityEnabled": false,
+                "clientCertEnabled": false,
+                "clientCertMode": "Required",
+                "hostNamesDisabled": false,
+                "customDomainVerificationId": "A166938289BD98E1F060614744CB990139005E525B452046BB7C352AF154B8CE",
+                "containerSize": 1536,
+                "dailyMemoryTimeQuota": 0,
+                "httpsOnly": false,
+                "redundancyMode": "None",
+                "storageAccountRequired": false,
+                "keyVaultReferenceIdentity": "SystemAssigned"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/ftp",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "allow": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/scm",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "allow": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/config",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/web",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php"
+                ],
+                "netFrameworkVersion": "v6.0",
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "remoteDebuggingVersion": "VS2019",
+                "httpLoggingEnabled": false,
+                "acrUseManagedIdentityCreds": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$MecozziDemoImageProcessing",
+                "scmType": "None",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false
+                    }
+                ],
+                "loadBalancing": "LeastRequests",
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "autoHealEnabled": false,
+                "vnetRouteAllEnabled": false,
+                "vnetPrivatePortsCount": 0,
+                "cors": {
+                    "allowedOrigins": [
+                        "https://portal.azure.com"
+                    ],
+                    "supportCredentials": false
+                },
+                "localMySqlEnabled": false,
+                "ipSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 1,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 1,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictionsUseMain": false,
+                "http20Enabled": false,
+                "minTlsVersion": "1.2",
+                "scmMinTlsVersion": "1.0",
+                "ftpsState": "AllAllowed",
+                "preWarmedInstanceCount": 0,
+                "functionAppScaleLimit": 200,
+                "functionsRuntimeScaleMonitoringEnabled": false,
+                "minimumElasticInstanceCount": 0,
+                "azureStorageAccounts": {}
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/12c36de4ce4d4ddfba8c875468661bb1",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "status": 4,
+                "author_email": "N/A",
+                "author": "VS Code",
+                "deployer": "ZipDeploy",
+                "message": "Created via a push deployment",
+                "start_time": "2022-03-23T06:27:36.1885577Z",
+                "end_time": "2022-03-23T06:27:37.5068781Z",
+                "active": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/1b58e9b3401f4fa18dc31510a19244f8",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "status": 4,
+                "author_email": "N/A",
+                "author": "VS Code",
+                "deployer": "ZipDeploy",
+                "message": "Created via a push deployment",
+                "start_time": "2022-03-23T00:22:06.6828067Z",
+                "end_time": "2022-03-23T00:22:08.4171113Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/8adcc9a1877b47948e887b74d157a6c6",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "status": 4,
+                "author_email": "N/A",
+                "author": "VS Code",
+                "deployer": "ZipDeploy",
+                "message": "Created via a push deployment",
+                "start_time": "2022-03-23T03:42:37.3189173Z",
+                "end_time": "2022-03-23T03:42:38.8433432Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/9f282d831ace47efaeacecb7aae9e9bd",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "status": 4,
+                "author_email": "N/A",
+                "author": "VS Code",
+                "deployer": "ZipDeploy",
+                "message": "Created via a push deployment",
+                "start_time": "2022-03-22T05:36:07.5244315Z",
+                "end_time": "2022-03-22T05:36:08.7901212Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/abb904c5e0a341f3b3272d6ff970c7a0",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "status": 4,
+                "author_email": "N/A",
+                "author": "VS Code",
+                "deployer": "ZipDeploy",
+                "message": "Created via a push deployment",
+                "start_time": "2022-03-23T03:33:19.4754696Z",
+                "end_time": "2022-03-23T03:33:21.7744262Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/ee78926864814824a88be4304ffb0c67",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "status": 4,
+                "author_email": "N/A",
+                "author": "VS Code",
+                "deployer": "ZipDeploy",
+                "message": "Created via a push deployment",
+                "start_time": "2022-03-23T00:05:57.7492046Z",
+                "end_time": "2022-03-23T00:05:59.7039747Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/f2d07602281446d986a18f5ffbfcc674",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "status": 4,
+                "author_email": "N/A",
+                "author": "VS Code",
+                "deployer": "ZipDeploy",
+                "message": "Created via a push deployment",
+                "start_time": "2022-03-23T03:22:41.6515342Z",
+                "end_time": "2022-03-23T03:22:43.7519422Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/functions",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/describe_uploaded_image",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "script_root_path_href": "https://mecozzidemoimageprocessing.azurewebsites.net/admin/vfs/site/wwwroot/describe_uploaded_image/",
+                "script_href": "https://mecozzidemoimageprocessing.azurewebsites.net/admin/vfs/site/wwwroot/bin/functions.dll",
+                "config_href": "https://mecozzidemoimageprocessing.azurewebsites.net/admin/vfs/site/wwwroot/describe_uploaded_image/function.json",
+                "test_data_href": "https://mecozzidemoimageprocessing.azurewebsites.net/admin/vfs/data/Functions/sampledata/describe_uploaded_image.dat",
+                "href": "https://mecozzidemoimageprocessing.azurewebsites.net/admin/functions/describe_uploaded_image",
+                "config": {},
+                "language": "DotNetAssembly",
+                "isDisabled": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "apiVersion": "2021-03-01",
+            "name": "MecozziDemoImageProcessing/mecozzidemoimageprocessing.azurewebsites.net",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', 'MecozziDemoImageProcessing')]"
+            ],
+            "properties": {
+                "siteName": "MecozziDemoImageProcessing",
+                "hostNameType": "Verified"
+            }
+        }
+    ]
+}
